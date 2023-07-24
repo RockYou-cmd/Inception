@@ -9,4 +9,3 @@ services:
   mariadb:
     build: ./req/mariadb
     container_name: mariadb
-    stdin_open: true

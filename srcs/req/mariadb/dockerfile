@@ -1,8 +1,9 @@
-FROM debian:buster
+FROM debian:bullseye
 
-COPY tools/mariadb.sh .
-
-RUN apt update
+RUN apt update 
 RUN apt install mariadb-server -y
+COPY tools/mariadb.sh .
+# RUN mysqld_safe --nowatch
 
-CMD ["mysqld_safe"]
+CMD ["sh", "mariadb.sh"]
+
