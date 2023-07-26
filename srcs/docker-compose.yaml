@@ -4,8 +4,16 @@ services:
   nginx:
     build: ./req/nginx
     container_name: nginx
+    volumes:
+      - /Users/ael-korc/Desktop/inception/srcs/req/wordpress/wordpress:/var/www/html/wordpress
     ports:
       - '443:443'
-  mariadb:
-    build: ./req/mariadb
-    container_name: mariadb
+  # mariadb:
+  #   build: ./req/mariadb
+  #   container_name: mariadb
+  wordpress:
+    build: ./req/wordpress
+    container_name: wordpress
+    stdin_open: true
+    volumes:
+      - /Users/ael-korc/Desktop/inception/srcs/req/wordpress/wordpress:/var/www/html/wordpress

@@ -1,1 +1,9 @@
 FROM debian:bullseye
+
+COPY tools/wordpress.sh .
+
+RUN apt update
+RUN apt install php-fpm php-mysql php-curl php-gd php-mbstring php-xml php-xmlrpc php-zip wget -y
+# RUN service php7.4-fpm start
+
+CMD ["sh", "wordpress.sh"]

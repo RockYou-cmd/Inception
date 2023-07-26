@@ -14,9 +14,9 @@ Each service runs in a dedicated container.
 
 • A Docker container that contains MariaDB only without nginx.
 
-• A volume that contains your WordPress database.
+• A volume that `contains` your WordPress database.
 
 • A second volume that contains your WordPress website files.
 
-• A docker-network that establishes the connection between your containers.
+• A docker-network that `establishes` the connection between your containers.
 
