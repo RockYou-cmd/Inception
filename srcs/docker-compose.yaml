@@ -1,19 +1,26 @@
 version: "3"
 
 services:
+  mariadb:
+    build: ./requirements/mariadb
+    container_name: mariadb
+    env_file:
+      - .env
+  wordpress:
+    build: ./requirements/wordpress
+    container_name: wordpress
+    volumes:
+      - /Users/ael-korc/data/wordpress:/var/www/html/wordpress
+    env_file:
+      - .env
   nginx:
-    build: ./req/nginx
+    build: ./requirements/nginx
     container_name: nginx
     volumes:
-      - /Users/ael-korc/Desktop/inception/srcs/req/wordpress/wordpress:/var/www/html/wordpress
+      - /Users/ael-korc/data/wordpress:/var/www/html/wordpress
     ports:
       - '443:443'
-  # mariadb:
-  #   build: ./req/mariadb
-  #   container_name: mariadb
-  wordpress:
-    build: ./req/wordpress
-    container_name: wordpress
-    stdin_open: true
-    volumes:
-      - /Users/ael-korc/Desktop/inception/srcs/req/wordpress/wordpress:/var/www/html/wordpress
+    depends_on:
+      - wordpress
+    env_file:
+      - .env

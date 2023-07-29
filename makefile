@@ -9,6 +9,7 @@ prune:
 del: down 
 	docker rmi srcs-nginx
 	docker rmi srcs-wordpress
+	docker rmi srcs-mariadb
 
 dmaria:
 	cd srcs/ && docker-compose down && docker rmi srcs-mariadb -f
