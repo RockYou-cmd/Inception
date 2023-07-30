@@ -1,7 +1,7 @@
 #inception
 
 up:
-	cd srcs/ && docker-compose up -d
+	cd srcs/ && docker-compose up
 down:
 	cd srcs/ && docker-compose down
 prune:

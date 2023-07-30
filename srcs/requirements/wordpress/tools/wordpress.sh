@@ -9,7 +9,7 @@ mv wp-cli.phar /usr/local/bin/wp
 
 wp core download --allow-root
 
-wp core config --dbname=$DB_NAME --dbuser=$DB_USER --dbpass=$DB_PASS --dbhost=$DB_HOST --allow-root --skip-check
+wp core config --dbname=$DB_NAME --dbuser=$MYSQL_USER --dbpass=$MYSQL_PASSWORD --dbhost=$DB_HOST --allow-root --skip-check
 
 wp core install --url=localhost --title="Arctic monkeys" --admin_user=$ADMIN_USER --admin_password=$ADMIN_PASSWORD --admin_email=$ADMIN_EMAIL --allow-root
 

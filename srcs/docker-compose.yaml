@@ -6,6 +6,8 @@ services:
     container_name: mariadb
     env_file:
       - .env
+    volumes:
+      - /Users/ael-korc/data/wordpress_db:/var/lib/mysql/wordpress_db
   wordpress:
     build: ./requirements/wordpress
     container_name: wordpress
@@ -15,6 +17,8 @@ services:
       - .env
   nginx:
     build: ./requirements/nginx
+    env_file:
+      - .env
     container_name: nginx
     volumes:
       - /Users/ael-korc/data/wordpress:/var/www/html/wordpress
@@ -22,5 +26,3 @@ services:
       - '443:443'
     depends_on:
       - wordpress
-    env_file:
-      - .env
