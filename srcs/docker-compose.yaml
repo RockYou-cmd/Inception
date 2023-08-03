@@ -6,13 +6,13 @@ services:
     container_name: mariadb
     env_file:
       - .env
-    volumes:
-      - /Users/ael-korc/data/wordpress_db:/var/lib/mysql/wordpress_db
+    # volumes:
+    #   - /Users/ael-korc/data/wordpress_db:/var/lib/mysql/wordpress_db
   wordpress:
     build: ./requirements/wordpress
     container_name: wordpress
     volumes:
-      - /Users/ael-korc/data/wordpress:/var/www/html/wordpress
+      - wp_vol:/var/www/html/wordpress
     env_file:
       - .env
   nginx:
@@ -21,8 +21,21 @@ services:
       - .env
     container_name: nginx
     volumes:
-      - /Users/ael-korc/data/wordpress:/var/www/html/wordpress
+      - wp_vol:/var/www/html/wordpress
     ports:
       - '443:443'
     depends_on:
       - wordpress
+
+volumes:
+  wp_vol:
+    driver: local
+    driver_opts:
+      type: noun
+      o: bind
+      device: /Users/ael-korc/Inception/srcs/requirements/wordpress/wordpress_filess
+        
+      
+      
+
+    #if [ -f "var/www/html/wordpress/wp-config.php" ]; then echo alae; fi

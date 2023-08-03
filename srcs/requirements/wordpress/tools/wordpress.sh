@@ -1,5 +1,5 @@
 
-cd var && mkdir -p www/html/wordpress && cd www/html/wordpress
+cd var/www/html/wordpress
 
 wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 
