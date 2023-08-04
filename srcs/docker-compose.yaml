@@ -6,8 +6,9 @@ services:
     container_name: mariadb
     env_file:
       - .env
-    # volumes:
-    #   - /Users/ael-korc/data/wordpress_db:/var/lib/mysql/wordpress_db
+    volumes:
+      - db_vol:/var/lib/mysql/wordpress_db
+    stdin_open: true
   wordpress:
     build: ./requirements/wordpress
     container_name: wordpress
@@ -33,9 +34,12 @@ volumes:
     driver_opts:
       type: noun
       o: bind
-      device: /Users/ael-korc/Inception/srcs/requirements/wordpress/wordpress_filess
-        
-      
-      
+      device: /Users/ael-korc/Inception/srcs/requirements/wordpress/wordpress_files
+  db_vol:
+    driver: local
+    driver_opts:
+      type: noun
+      o: bind
+      device: /Users/ael-korc/Inception/srcs/requirements/mariadb/wp_db
 
     #if [ -f "var/www/html/wordpress/wp-config.php" ]; then echo alae; fi

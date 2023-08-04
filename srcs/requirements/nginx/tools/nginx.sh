@@ -1,5 +1,9 @@
 
+
 cd /etc/nginx
+
+if [ ! -d "ssl" ]; then
+
 
 mkdir ssl && cd ssl
 
@@ -12,5 +16,7 @@ openssl x509 -req -days 356 -in inception.csr -signkey inception.key -out incept
 envsubst < /etc/nginx/nginxt.conf > /etc/nginx/conf.d/nginx.conf
 
 sed -i 's#fastcgi_param SCRIPT_FILENAME#fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name#' /etc/nginx/conf.d/nginx.conf
+
+fi
 
 nginx -g 'daemon off;'
