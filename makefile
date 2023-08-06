@@ -12,7 +12,7 @@ down:
 	cd srcs/ && docker-compose down
 prune:
 	docker system prune -a
-del: down 
+del: down
 	docker rmi srcs-nginx
 	docker rmi srcs-wordpress
 	docker rmi srcs-mariadb
@@ -26,11 +26,11 @@ vol_fol:
 	fi
 
 vol_del:
-	docker volume rm srcs_db_vol
-	docker volume rm srcs_wp_vol
-	# rm -rf /Users/ael-korc/data/wordpress_files
-	# rm -rf /Users/ael-korc/data/wp_db
-	rm -rf /Users/ael-korc/data
+	docker volume rm -f srcs_db_vol
+	docker volume rm -f srcs_wp_vol
+	rm -r /Users/ael-korc/Inception/srcs/requirements/wordpress/wordpress_files
+	docker volume prune -f
+	cd srcs && docker-compose down -v
 
 ls:
 	@echo "\033[32mContainers:\033[0m"
@@ -41,3 +41,8 @@ ls:
 	@echo ""
 	@echo "\033[34mVolumes:\033[0m"
 	@docker volume ls -q
+
+clear: prune vol_del
+
+prune:
+	docker system prune -a

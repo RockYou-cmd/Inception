@@ -8,6 +8,7 @@ services:
       - .env
     volumes:
       - db_vol:/var/lib/mysql/wordpress_db
+    restart: always
     stdin_open: true
   wordpress:
     build: ./requirements/wordpress
@@ -16,6 +17,7 @@ services:
       - wp_vol:/var/www/html/wordpress
     env_file:
       - .env
+    restart: always
   nginx:
     build: ./requirements/nginx
     env_file:
@@ -27,6 +29,7 @@ services:
       - '443:443'
     depends_on:
       - wordpress
+    restart: always
 
 volumes:
   wp_vol:
@@ -41,5 +44,3 @@ volumes:
       type: noun
       o: bind
       device: /Users/ael-korc/Inception/srcs/requirements/mariadb/wp_db
-
-    #if [ -f "var/www/html/wordpress/wp-config.php" ]; then echo alae; fi

@@ -1,5 +1,4 @@
 
-# if [ ! -f "/var/www/html/wordpress/wp-config.php" ]; then
 if [ ! -f "allready.txt" ]; then
 
 touch /allready.txt
@@ -22,7 +21,6 @@ wp user create $WP_UNAME $WP_EMAIL --user_pass=$WP_PASS --allow-root
 
 
 fi
-
 
 mkdir /run/php/
 

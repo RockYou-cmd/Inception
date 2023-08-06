@@ -3,7 +3,6 @@ FROM debian:bullseye
 RUN apt update 
 RUN apt install mariadb-server -y
 COPY tools/mariadb.sh .
-# RUN mysqld_safe --nowatch
 
 CMD ["sh", "mariadb.sh"]
 

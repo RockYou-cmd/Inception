@@ -1,6 +1,8 @@
 
 service mariadb start
 
+chmod 777 /var/lib/mysql/wordpress_db
+
 sed -i 's#127.0.0.1#0.0.0.0#g' /etc/mysql/mariadb.conf.d/50-server.cnf
 
 
