@@ -43,6 +43,3 @@ ls:
 	@docker volume ls -q
 
 clear: prune vol_del
-
-prune:
-	docker system prune -a

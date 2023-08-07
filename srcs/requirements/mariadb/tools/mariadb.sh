@@ -1,4 +1,8 @@
 
+if [ ! -f "allready.txt" ]; then
+
+touch /allready.txt
+
 service mariadb start
 
 chmod 777 /var/lib/mysql/wordpress_db
@@ -18,5 +22,7 @@ mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD'"
 mysql -e "FLUSH PRIVILEGES;" -p$MYSQL_ROOT_PASSWORD
 
 mysqladmin -p$MYSQL_ROOT_PASSWORD shutdown
+
+fi
 
 mysqld_safe

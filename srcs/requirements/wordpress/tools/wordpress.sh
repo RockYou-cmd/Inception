@@ -20,11 +20,13 @@ wp core install --url=localhost --title="Arctic monkeys" --admin_user=$ADMIN_USE
 wp user create $WP_UNAME $WP_EMAIL --user_pass=$WP_PASS --allow-root
 
 
-fi
-
 mkdir /run/php/
 
 sed -i 's#/run/php/php7.4-fpm.sock#9000#g' /etc/php/7.4/fpm/pool.d/www.conf
+
+fi
+
+
 
 
 php-fpm7.4 -F

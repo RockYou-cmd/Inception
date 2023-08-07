@@ -6,8 +6,8 @@ services:
     container_name: mariadb
     env_file:
       - .env
-    volumes:
-      - db_vol:/var/lib/mysql/wordpress_db
+    # volumes:
+    #   - db_vol:/var/lib/mysql/wordpress_db
     restart: always
     stdin_open: true
   wordpress:
