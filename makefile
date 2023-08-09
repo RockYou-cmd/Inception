@@ -16,6 +16,7 @@ del: down
 	docker rmi srcs-nginx
 	docker rmi srcs-wordpress
 	docker rmi srcs-mariadb
+	docker rmi srcs-redis
 
 vol_fol:
 	if [ ! -d "$(WP_VOL)" ]; then \

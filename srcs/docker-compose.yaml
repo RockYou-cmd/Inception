@@ -9,7 +9,6 @@ services:
     # volumes:
     #   - db_vol:/var/lib/mysql/wordpress_db
     restart: always
-    stdin_open: true
   wordpress:
     build: ./requirements/wordpress
     container_name: wordpress
@@ -29,7 +28,12 @@ services:
       - '443:443'
     depends_on:
       - wordpress
+      - redis
     restart: always
+  redis:
+    build: ./requirements/redis
+    container_name: redis
+
 
 volumes:
   wp_vol:
