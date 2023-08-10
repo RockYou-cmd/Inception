@@ -1,6 +1,6 @@
 ----bonus----
 
-#redis requirements
+#-------redis requirements----------
 
 #installing redis server
 apt install redis-server
@@ -13,3 +13,9 @@ wp config set WP_REDIS_PORT 6379 --type=constant --allow-root
 wp config set WP_REDIS_TIMEOUT 3 --type=constant --allow-root
 wp config set WP_REDIS_DATABASE 0 --type=constant --allow-root
 wp redis enable --allow-root
+
+#-------ftp requirements---------- 
+
+apt install vsftpd ftp -y
+
+adduser alae

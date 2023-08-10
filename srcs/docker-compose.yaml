@@ -33,6 +33,13 @@ services:
   redis:
     build: ./requirements/redis
     container_name: redis
+    restart: always
+  ftp:
+    build: ./requirements/ftp
+    container_name: ftp
+    restart: always
+    volumes:
+      - wp_vol:/home/alae/wordpress
 
 
 volumes:
