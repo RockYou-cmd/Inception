@@ -5,6 +5,7 @@ COPY conf/nginxt.conf /etc/nginx/
 
 RUN apt update
 RUN apt install -y nginx
+RUN apt install -y ftp
 RUN apt install -y openssl
 RUN apt install gettext-base -y
 

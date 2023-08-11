@@ -18,6 +18,8 @@ del: down
 	docker rmi srcs-mariadb
 	docker rmi srcs-redis
 	docker rmi srcs-ftp
+	docker rmi srcs-resume
+	docker rmi srcs-adminer
 
 vol_fol:
 	if [ ! -d "$(WP_VOL)" ]; then \

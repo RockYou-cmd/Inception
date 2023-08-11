@@ -1,7 +1,7 @@
 FROM debian:bullseye
 
 RUN apt update
-RUN apt install redis-server php-redis -y
+RUN apt install redis-server php-redis ftp -y
 COPY tools/redis.sh .
 
 CMD ["sh", "redis.sh"]

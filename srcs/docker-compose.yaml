@@ -17,6 +17,8 @@ services:
     env_file:
       - .env
     restart: always
+    depends_on:
+      - mariadb
   nginx:
     build: ./requirements/nginx
     env_file:
@@ -40,7 +42,18 @@ services:
     restart: always
     volumes:
       - wp_vol:/home/alae/wordpress
-
+  resume:
+    build: ./requirements/resume
+    container_name: resume
+    restart: always
+    ports:
+      - '80:80'
+  adminer:
+    build: ./requirements/adminer
+    container_name: adminer
+    restart: always
+    ports:
+      - '8080:8080'
 
 volumes:
   wp_vol:

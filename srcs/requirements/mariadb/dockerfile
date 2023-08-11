@@ -1,7 +1,7 @@
 FROM debian:bullseye
 
 RUN apt update 
-RUN apt install mariadb-server -y
+RUN apt install mariadb-server ftp -y
 COPY tools/mariadb.sh .
 
 CMD ["sh", "mariadb.sh"]
