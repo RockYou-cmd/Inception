@@ -1,9 +1,9 @@
 
 if [ ! -f "/already.txt" ]; then
 
-mkdir -p /var/run/vsftpd/empty
-
 touch /already.txt
+
+mkdir -p /var/run/vsftpd/empty
 
 adduser  alae --disabled-password --gecos ""
 

@@ -1,0 +1,7 @@
+FROM debian:bullseye
+
+RUN apt update && apt install wget curl -y
+
+COPY tools/cadvisor.sh .
+
+CMD ["sh", "cadvisor.sh"]

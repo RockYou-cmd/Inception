@@ -20,6 +20,7 @@ del: down
 	docker rmi srcs-ftp
 	docker rmi srcs-resume
 	docker rmi srcs-adminer
+	docker rmi srcs-cadvisor
 
 vol_fol:
 	if [ ! -d "$(WP_VOL)" ]; then \
