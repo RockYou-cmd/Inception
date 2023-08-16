@@ -11,6 +11,7 @@ services:
     restart: always
     networks:
       - inception_network
+    image: mariadb
   wordpress:
     build: ./requirements/wordpress
     container_name: wordpress
@@ -23,6 +24,7 @@ services:
       - mariadb
     networks:
       - inception_network
+    image: wordpress
   nginx:
     build: ./requirements/nginx
     env_file:
@@ -38,12 +40,14 @@ services:
     restart: always
     networks:
       - inception_network
+    image: nginx
   redis:
     build: ./requirements/redis
     container_name: redis
     restart: always
     networks:
       - inception_network
+    image: redis
   ftp:
     build: ./requirements/ftp
     container_name: ftp
@@ -52,14 +56,16 @@ services:
       - wp_vol:/home/alae/wordpress
     networks:
       - inception_network
+    image: ftp
   resume:
     build: ./requirements/resume
     container_name: resume
     restart: always
     ports:
-      - '80:80'
+      - '5050:80'
     networks:
       - inception_network
+    image: resume
   adminer:
     build: ./requirements/adminer
     container_name: adminer
@@ -68,6 +74,7 @@ services:
       - '8080:8080'
     networks:
       - inception_network
+    image: adminer
   cadvisor:
     build: requirements/Cadvisor
     container_name: Cadvisor
@@ -81,6 +88,7 @@ services:
       - /var/lib/docker/:/var/lib/docker:ro
     networks:
       - inception_network  
+    image: cadvisor
 volumes:
   wp_vol:
     driver: local
