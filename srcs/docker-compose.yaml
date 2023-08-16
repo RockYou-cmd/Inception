@@ -6,9 +6,11 @@ services:
     container_name: mariadb
     env_file:
       - .env
-    # volumes:
-    #   - db_vol:/var/lib/mysql/wordpress_db
+    volumes:
+      - db_vol:/var/lib/mysql/wordpress_db
     restart: always
+    networks:
+      - inception_network
   wordpress:
     build: ./requirements/wordpress
     container_name: wordpress
@@ -19,6 +21,8 @@ services:
     restart: always
     depends_on:
       - mariadb
+    networks:
+      - inception_network
   nginx:
     build: ./requirements/nginx
     env_file:
@@ -32,28 +36,38 @@ services:
       - wordpress
       - redis
     restart: always
+    networks:
+      - inception_network
   redis:
     build: ./requirements/redis
     container_name: redis
     restart: always
+    networks:
+      - inception_network
   ftp:
     build: ./requirements/ftp
     container_name: ftp
     restart: always
     volumes:
       - wp_vol:/home/alae/wordpress
+    networks:
+      - inception_network
   resume:
     build: ./requirements/resume
     container_name: resume
     restart: always
     ports:
       - '80:80'
+    networks:
+      - inception_network
   adminer:
     build: ./requirements/adminer
     container_name: adminer
     restart: always
     ports:
       - '8080:8080'
+    networks:
+      - inception_network
   cadvisor:
     build: requirements/Cadvisor
     container_name: Cadvisor
@@ -61,17 +75,25 @@ services:
     ports:
       - '8181:8080'
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /:/rootfs:ro
+      - /var/run/:/var/run/:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    networks:
+      - inception_network  
 volumes:
   wp_vol:
     driver: local
     driver_opts:
       type: noun
       o: bind
-      device: /Users/ael-korc/Inception/srcs/requirements/wordpress/wordpress_files
+      device: /home/ael-korc/data/wordpress_files
   db_vol:
     driver: local
     driver_opts:
       type: noun
       o: bind
-      device: /Users/ael-korc/Inception/srcs/requirements/mariadb/wp_db
+      device: /home/ael-korc/data/wp_db
+networks:
+  inception_network:
+    driver: bridge

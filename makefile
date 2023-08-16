@@ -1,7 +1,7 @@
 #inception
 
-WP_VOL := /Users/ael-korc/Inception/srcs/requirements/wordpress/wordpress_files
-DB_VOL := /Users/ael-korc/Inception/srcs/requirements/mariadb/wp_db
+WP_VOL := /home/ael-korc/data/wordpress_files
+DB_VOL := /home/ael-korc/data/wp_db
 
 
 all: vol_fol up
@@ -13,14 +13,14 @@ down:
 prune:
 	docker system prune -a
 del: down
-	docker rmi srcs-nginx
-	docker rmi srcs-wordpress
-	docker rmi srcs-mariadb
-	docker rmi srcs-redis
-	docker rmi srcs-ftp
-	docker rmi srcs-resume
-	docker rmi srcs-adminer
-	docker rmi srcs-cadvisor
+	docker rmi srcs_nginx
+	docker rmi srcs_wordpress
+	docker rmi srcs_mariadb
+	docker rmi srcs_redis
+	docker rmi srcs_ftp
+	docker rmi srcs_resume
+	docker rmi srcs_adminer
+	docker rmi srcs_cadvisor
 
 vol_fol:
 	if [ ! -d "$(WP_VOL)" ]; then \
@@ -33,7 +33,8 @@ vol_fol:
 vol_del:
 	docker volume rm -f srcs_db_vol
 	docker volume rm -f srcs_wp_vol
-	rm -r /Users/ael-korc/Inception/srcs/requirements/wordpress/wordpress_files
+	sudo rm -r $(WP_VOL)
+	sudo rm -r $(DB_VOL)
 	docker volume prune -f
 	cd srcs && docker-compose down -v
 
